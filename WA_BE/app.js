@@ -8,6 +8,7 @@ const config = require("./config");
 
 //routes
 const homepageRouter = require('./routes/homepage');
+const userRouter = require('./routes/user');
 
 //FE connection via cors
 
@@ -17,7 +18,7 @@ app.use(express.json());
 
 // register all routes
 app.use('/', homepageRouter);
-
+app.use('/user', userRouter);
 
 
 const port = 3000;

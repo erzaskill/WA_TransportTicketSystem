@@ -1,0 +1,33 @@
+### Login
+
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+{
+  "username": "ivo",
+  "password": "heslo"
+}
+
+### All users
+
+GET http://localhost:3000/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InhwaXNhcm92Iiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjQ3MDIyNTIxfQ.gK6wq8e2TVonarPL3YbyRwRFvUHWJ2wCkfmlTSqK1yE
+
+### Register
+
+POST http://localhost:3000/user/register
+Content-Type: application/json
+
+{
+  "username": "ivo",
+  "password": "heslo",
+  "email": "iva@gmail.com",
+  "name": "Ivo",
+  "surname": "Pisarovic",
+  "role": "admin"
+}
+
+### Get info
+
+GET http://localhost:3000/user/info
+Authorization: Bearer e14ca15dce253381901da4f8d2d421024d1a6a4e67e15f8e2f5990692f19b64109bc17c20f31811a71ed620d47dce3183614c2103c016958688905dcdc49cab8
