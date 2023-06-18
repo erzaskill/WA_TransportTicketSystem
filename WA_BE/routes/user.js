@@ -12,7 +12,6 @@ router.post('/login', async (req, res) => {
         console.log("incorrect passwords!")
     } else {
         const user = await userService.getByUsername(req.body.username);
-
         console.log("User info: ", user)
         const response = {
             token: userService.generateToken(user)
@@ -21,12 +20,8 @@ router.post('/login', async (req, res) => {
 
         res.status(201).json(response)
     }
-
 })
-
-
 router.post('/register', async (req, res) => {
-
     const hash = userService.hashPassword(req.body.password);
     console.log("Hash of the password: ", hash);
 
@@ -42,7 +37,6 @@ router.post('/register', async (req, res) => {
             token: userService.generateToken(user)
         };
         res.status(201).json(response)
-
     }
 })
 
