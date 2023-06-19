@@ -7,12 +7,12 @@ router.get('/', async (req, res) => {
 })
 router.get('user/:id', async (req, res) => {
     const id = parseInt(req.params.id);
-    const ticket = await ticketService.getMyTicket(id);
+    const ticket = await TicketService.getMyTicket(id);
     res.json(ticket);
 })
 router.get('/:id', async (req, res) => {
     const id = parseInt(req.params.id);
-    const ticket = await ticketService.getById(id);
+    const ticket = await TicketService.getById(id);
 
     if (ticket) {
         res.json(ticket);
