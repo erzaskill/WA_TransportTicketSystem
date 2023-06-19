@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const StationService = require('../services/station-service')
+const StationService = require('../services/station-service');
 
 router.get('/', async (req, res) => {
     const stations = await StationService.getAll();
@@ -29,7 +29,6 @@ router.post('/', async (req, res) => {
         res.status(400).send("Wrong input");
         return;
     }
-
     const station = await StationService.createStation(data);
 
     res.status(201).json(station);
@@ -41,7 +40,7 @@ router.put('/:id', async (req, res) => {
     console.log("Station ID: ", id) //debug
     console.log("Station data: ", data) //debugging
 
-    const station = await StationService.update(id, data);
+    const station = await StationService.updateStation(id, data);
 
     if (!station) {
         res.status(404).send("Not found")
@@ -53,7 +52,7 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     const id = parseInt(req.params.id);
-    await StationService.delete(id);
+    await StationService.deleteStation(id);
     res.status(204).send("No Content");
 })
 
