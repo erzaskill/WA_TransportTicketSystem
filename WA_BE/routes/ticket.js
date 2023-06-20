@@ -5,7 +5,7 @@ router.get('/', async (req, res) => {
     const ticket = await TicketService.getAll();
     res.json(ticket);
 })
-router.get('user/:id', async (req, res) => {
+router.get('/user/:id', async (req, res) => {
     const id = parseInt(req.params.id);
     const ticket = await TicketService.getMyTicket(id);
     res.json(ticket);
