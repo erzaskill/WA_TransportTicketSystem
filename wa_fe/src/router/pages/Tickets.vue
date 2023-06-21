@@ -11,6 +11,7 @@ const stationsStore = useStationsStore();
 
 onMounted(() => {
   ticketsStore.fetchMyTickets();
+  stationsStore.fetchStations();
 });
 </script>
 

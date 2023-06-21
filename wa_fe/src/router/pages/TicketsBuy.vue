@@ -1,7 +1,7 @@
 <template>
 
   <v-form @submit.prevent="addTicket">
-    <input type="date" v-model="state.date" id="buy-date" />
+    <input type="date" id="dateInput" v-model="state.date" />
     <v-select item-title="name" item-value="id" :items="stationStore.stations" v-model="state.station_dep"> </v-select>
     <v-select item-title="name" item-value="id" :items="stationStore.stations" v-model="state.station_des"> </v-select>
     <v-btn id="submit" type="submit" color="primary">Buy</v-btn>
@@ -25,6 +25,22 @@ const router = useRouter();
 onMounted(() => {
   stationStore.fetchStations();
 });
+
+//My try to make function, so I can't put in past date.
+const today = new Date();
+const dateInput = document.getElementById('dateInput') as HTMLInputElement;
+if (dateInput !== null) {
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.min = today;
+
+  dateInput.addEventListener('input', () => {
+    const selectedDate = new Date(dateInput.value);
+    const currentDate = new Date(today);
+    if (selectedDate < currentDate) {
+      dateInput.value = today;
+    }
+  });
+}
 
 
 const state = reactive({

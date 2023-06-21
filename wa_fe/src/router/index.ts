@@ -7,6 +7,7 @@ import Register from "@/router/pages/Register.vue"
 import NotFound from "@/router/pages/NotFound.vue";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
+import InfoTable from "@/router/pages/InfoTable.vue";
 
 
 const routes: RouteRecordRaw[] = [
@@ -17,7 +18,7 @@ const routes: RouteRecordRaw[] = [
     path: "/stations",
     component: Stations,
     name: "stations",
-    meta: { requiresAuth: false },
+    meta: { requiresAuth: true },
   },
   {
     path: "/tickets",
@@ -30,6 +31,12 @@ const routes: RouteRecordRaw[] = [
     component: TicketsBuy,
     name: "TicketsBuy",
     meta: { requiresAuth: true },
+  },
+  {
+    path: "/information-table",
+    component: InfoTable,
+    name: "InfoTable",
+    meta: { requiresAuth: false },
   },
   { path: "/:pathMatch(.*)*", component: NotFound, name: "notfound" },
 ];

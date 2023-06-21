@@ -2,11 +2,9 @@ import { axiosInstance } from "@/code/api";
 import type { Ticket } from "@/model/Ticket";
 import { defineStore } from "pinia";
 import { computed, reactive, ref } from "vue";
-import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 
 export const useTicketsStore = defineStore("tickets", () => {
-  const router = useRouter();
   const tickets = reactive<Ticket[]>([]);
   const isLoading = ref(false);
   const isAdding = ref(false);

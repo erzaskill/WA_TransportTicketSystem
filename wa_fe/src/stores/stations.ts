@@ -2,16 +2,12 @@ import { axiosInstance } from "@/code/api";
 import type { Station } from "@/model/Station";
 import { defineStore } from "pinia";
 import { computed, reactive, ref } from "vue";
-import { useRouter } from "vue-router";
-import { useAuthStore } from "@/stores/auth"; //for Create and Update by Technic
 
 export const useStationsStore = defineStore("stations", () => {
-  const router = useRouter();
   const stations = reactive<Station[]>([]);
   const isLoading = ref(false);
   const isAdding = ref(false);
   const error = ref<string | null>(null);
-  const authStore = useAuthStore();
 
   const totalStations = computed<number>(() => stations.length);
 

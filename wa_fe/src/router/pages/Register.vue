@@ -48,10 +48,9 @@ const passwordRules = computed(() => [
   (v: string) => v.length >= 6 || 'Password must be at least 6 characters',
 ]);
 
-
-//TODO - make rule for email to have @domain.blabla
 const emailRules = computed(() => [
   (v: string) => !!v || 'Email is required',
+  (v: string) => /^[\w.-]+@[a-zA-Z_-]+?\.[a-zA-Z]{2,3}$/.test(v) || 'Email format is invalid',
 ]);
 
 const nameRules = computed(() => [

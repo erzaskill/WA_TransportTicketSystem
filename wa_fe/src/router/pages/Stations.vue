@@ -20,7 +20,7 @@ onMounted(() => {
   </div>
   <Error v-if="stationsStore.error" :message="stationsStore.error" />
   <Loading v-if="stationsStore.isLoading" />
-  <div v-else id="ticket-list">
+  <div v-else id="station-list">
 
     <div class="stations">
       <div v-for="station in stationsStore.stations" :key="station.id" class="card-container">
