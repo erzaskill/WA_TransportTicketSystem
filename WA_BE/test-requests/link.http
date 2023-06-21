@@ -4,12 +4,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hb
 Content-Type: application/json
 
 {
-  "title": "From Saturn to Earth",
-  "st_where": 3,
-  "st_from": 2,
-  "arrival_time": "7:30:00",
-  "departure_time": "9:30:00",
-  "previous_station": 1
+  "title": "Universe 330",
+  "st_where": 4,
+  "st_from": 1,
+  "arrival_time": "5:30:00",
+  "departure_time": "12:30:00",
+  "previous_station": 4
 }
 
 ### Create Link

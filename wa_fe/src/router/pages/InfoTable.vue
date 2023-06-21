@@ -15,6 +15,9 @@ onMounted(() => {
   linksStore.fetchLinks();
   stationsStore.fetchStations();
 });
+const troubles= computed(() =>{
+  return stationsStore.stations.filter(station => station.state !== 1);
+});
 </script>
 
 <template>
@@ -27,43 +30,45 @@ onMounted(() => {
   <div v-else id="link-list">
 
     <div class="links">
-      <div v-for="link in linksStore.links" :key="link.id" class="card-container">
+      <div class="header">
+        <p> From </p>
+        <p> Where </p>
+        <p> Departure </p>
+        <p> Arrival</p>
+        <p> Previous station </p>
+      </div>
+      <div v-for="link in linksStore.links" :key="link.id" class="link-container">
         <v-card class=" d-flex align-center link"  >
           <v-card-title class="headline">{{ link.title }}</v-card-title>
           <v-card-text>
             <p class="text-body-2">
               <v-icon icon="mdi-home"></v-icon>
-              <b>FROM: </b>
               <span> {{ stationsStore.getStationNameById(link.st_from) }}</span>
             </p>
 
             <p class="text-body-2">
               <v-icon icon="mdi-map-marker"></v-icon>
-              <b>WHERE:</b>
               <span>{{ stationsStore.getStationNameById(link.st_where) }}</span>
             </p>
 
             <p class="text-body-2">
               <v-icon icon="mdi-bus-clock"></v-icon>
-              <b>Departure: </b>
               <span> {{ link.departure_time}}</span>
             </p>
 
             <p class="text-body-2">
               <v-icon icon="mdi-timer-check"></v-icon>
-              <b>Arrival: </b>
               <span> {{ link.arrival_time}}</span>
             </p>
 
             <p class="text-body-2">
               <v-icon icon="mdi-skip-previous"></v-icon>
-              <b>Previous station: </b>
               <span> {{ stationsStore.getStationNameById(link.previous_station) }}</span>
             </p>
           </v-card-text>
           <div class="actions">
-            <v-btn v-if="authStore.user?.role === 'technic'"><v-icon icon="mdi-pencil" size="20"></v-icon></v-btn>
-            <v-btn v-if="authStore.user?.role === 'technic'"><v-icon icon="mdi-delete" size="20"></v-icon></v-btn>
+            <v-btn class="link-button" v-if="authStore.user?.role === 'technic'"><v-icon icon="mdi-pencil" size="20"></v-icon></v-btn>
+            <v-btn class="link-button" v-if="authStore.user?.role === 'technic'"><v-icon icon="mdi-delete" size="20"></v-icon></v-btn>
           </div>
         </v-card>
       </div>
@@ -75,8 +80,9 @@ onMounted(() => {
     <Loading v-if="stationsStore.isLoading" />
     <div v-else id="station-list">
       <div class="stations">
-        <div v-for="station in stationsStore.stations" :key="station.id" class="card-container">
-          <v-card class=" d-flex align-center station" v-if="station.state !== 1">
+        <div v-for="station in troubles" :key="station.id" class="card-container">
+          <v-card class=" d-flex align-center station">
+            <v-icon icon="mdi-earth" size="64"></v-icon>
             <v-card-title class="headline">{{ station.name }}</v-card-title>
             <v-card-text>
               <p class="text-body-2 "><span class="red">
@@ -84,6 +90,7 @@ onMounted(() => {
                   {{ station.problem !=='' ? station.problem : 'There are troubles on the road'}}</span>
               </p>
             </v-card-text>
+            <div id="border" class="border-bottom"></div>
           </v-card>
         </div>
       </div>
@@ -99,7 +106,7 @@ onMounted(() => {
 .links {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 8px;
   padding: 20px;
   background-color: rgba(0, 123, 255, 0.05);
   border-radius: 10px;
@@ -107,20 +114,36 @@ onMounted(() => {
   padding-bottom: 3rem;
 }
 .card-container{
+  width: 250px;
+}
+.link-container{
   width: 100%;
 }
 .link {
   display: flex;
   flex-wrap: wrap;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 5.45px 5.45px 10.9px rgba(174,174,192,.25), -2.63px -2.63px 10.9px #dfecff;
-  padding: 8px !important;
+  background-color: #f5f8ff;
+  box-shadow: none;
+  border-bottom: 1px solid #777777;
+  border-radius: 0;
+  
 }
 .actions i:last-child{
   margin-left: 5px;
 }
-
+.header{
+  display: flex;
+  width: 100%;
+  color: #777777;
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: -8px;
+  padding-left: 15%;
+  padding-right: 60px;
+}
+.header p{
+  width: 30%;
+}
 .link .v-card-text{
   display: flex;
   align-items: center;
@@ -142,7 +165,7 @@ p i, p b {
   color: #333;
   text-transform: uppercase;
   letter-spacing: 2px;
-  width: 15%;
+  padding: 0 !important;
 }
 
 .green{
@@ -169,21 +192,53 @@ p i, p b {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 5.45px 5.45px 10.9px rgba(174,174,192,.25), -2.63px -2.63px 10.9px #dfecff;
-  padding: 8px !important;
+  padding: 8px  8px  18px  8px!important;
+  height: 100%;
+  flex-direction: column;
+  position: relative;
 }
-
-.station .v-card-text{
+.link-button{
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  width: 30px;
+  min-width: 0;
+  background-color: #f5f8ff;
+}
+.station .v-card-text {
   display: flex;
   align-items: center;
   padding: 0;
 }
+.station .headline{
+  width: 100% ;
+  text-align: center;
+}
+.link .headline{
+  width: 15% ;
+}
 .station p{
-  width: 30%;
   display: flex;
   align-items: center;
 }
 
 .troubles{
   padding: 20px 0px 0px 0px;
+}
+#border{
+  background-color: #ffba49;
+}
+.border-bottom{
+  position: absolute;
+  background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      #000 10px,
+      #000 20px
+  );
+  width: 100%;
+  height: 10px;
+  bottom: 0;
 }
 </style>

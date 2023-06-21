@@ -1,9 +1,20 @@
 <template>
-
+  <h2>Buy Ticket 🛒</h2>
   <v-form @submit.prevent="addTicket">
-    <input type="date" id="dateInput" v-model="state.date" />
-    <v-select item-title="name" item-value="id" :items="stationStore.stations" v-model="state.station_dep"> </v-select>
-    <v-select item-title="name" item-value="id" :items="stationStore.stations" v-model="state.station_des"> </v-select>
+    <div class="flex">
+      <div class="container">
+        <label class="flex"><v-icon icon="mdi-home"></v-icon><b>FROM: </b></label>
+        <v-select item-title="name" item-value="id" :items="stationStore.stations" v-model="state.station_dep"> </v-select>
+      </div>
+      <div class="container">
+        <label class="flex" ><v-icon icon="mdi-map-marker"></v-icon><b>TO: </b></label>
+        <v-select item-title="name" item-value="id" :items="stationStore.stations" v-model="state.station_des"> </v-select>
+      </div>
+    </div>
+    <div class="container">
+      <label class="flex" ><v-icon icon="mdi-calendar-clock"></v-icon><b>DATE: </b></label>
+      <input type="date" id="dateInput" v-model="state.date" />
+    </div>
     <v-btn id="submit" type="submit" color="primary">Buy</v-btn>
 
     <v-snackbar v-model="state.snackbar" :timeout="5000" :color="state.error ? 'error' : 'success'">
@@ -59,5 +70,27 @@ const addTicket = async () => {
 </script>
 
 <style scoped>
-
+.flex{
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+label.flex{
+  gap:8px;
+}
+.container{
+  width: 100%;
+}
+input{
+  width: 100%;
+    background-color: #f6f6f6;
+    height: 56px;
+    padding-left: 12px;
+    border-radius: 4px;
+    padding-right: 12px;
+    margin-bottom: 1rem;
+}
+h2{
+  margin-bottom: 1rem;
+}
 </style>

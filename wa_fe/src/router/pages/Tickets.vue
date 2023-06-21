@@ -27,7 +27,7 @@ onMounted(() => {
     <div class="tickets">
       <div v-for="ticket in ticketsStore.tickets" :key="ticket.id" class="card-container">
         <v-card class=" d-flex align-center ticket"  >
-          <v-card-title class="headline">Ticket ID: {{ ticket.id }}</v-card-title>
+          <v-card-title class="headline">Ticket: #{{ ticket.id }}</v-card-title>
           <v-card-text>
 
 
@@ -110,11 +110,9 @@ p i, p b {
 
 .headline{
   font-family: "Arial", sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  font-size: 16px;
+ font-style: italic;
+  color: #777;
   width: 15%;
 }
 

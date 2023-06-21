@@ -46,8 +46,8 @@ onMounted(() => {
                   {{ station.problem !=='' ? station.problem : 'There are troubles on the road'}}</span></p>
               </v-card-text>
               <div class="actions">
-                <v-btn><v-icon icon="mdi-pencil" size="20"></v-icon></v-btn>
-                <v-btn><v-icon icon="mdi-delete" size="20"></v-icon></v-btn>
+                <v-btn class="link-button"><v-icon icon="mdi-pencil" size="20"></v-icon></v-btn>
+                <v-btn class="link-button"><v-icon icon="mdi-delete" size="20"></v-icon></v-btn>
               </div>
             </v-card>
 
@@ -62,6 +62,14 @@ onMounted(() => {
 .title-container{
   display: flex;
   justify-content: space-between;
+}
+
+.link-button{
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  width: 30px;
+  min-width: 0;
 }
 .stations {
   display: flex;
