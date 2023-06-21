@@ -5,7 +5,7 @@ import { computed, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth"; //for Create and Update by Technic
 
-export const useStationsStore = defineStore("tickets", () => {
+export const useStationsStore = defineStore("stations", () => {
   const router = useRouter();
   const stations = reactive<Station[]>([]);
   const isLoading = ref(false);
@@ -38,7 +38,7 @@ export const useStationsStore = defineStore("tickets", () => {
 
     try {
       const response = await axiosInstance.post("/station", station);
-      stations.push(response.data); // add the ticket returned by the server (it has an id)
+      stations.push(response.data);
     } catch (e: any) {
       console.error(e.message, e.response?.data);
       error.value =

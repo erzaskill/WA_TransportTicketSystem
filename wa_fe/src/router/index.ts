@@ -1,5 +1,6 @@
 import Homepage from "@/router/pages/Homepage.vue";
 import Tickets from "@/router/pages/Tickets.vue";
+import TicketsBuy from "@/router/pages/TicketsBuy.vue";
 import Stations from "@/router/pages/Stations.vue";
 import Login from "@/router/pages/Login.vue";
 import Register from "@/router/pages/Register.vue"
@@ -22,6 +23,12 @@ const routes: RouteRecordRaw[] = [
     path: "/tickets",
     component: Tickets,
     name: "tickets",
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/tickets-buy",
+    component: TicketsBuy,
+    name: "TicketsBuy",
     meta: { requiresAuth: true },
   },
   { path: "/:pathMatch(.*)*", component: NotFound, name: "notfound" },

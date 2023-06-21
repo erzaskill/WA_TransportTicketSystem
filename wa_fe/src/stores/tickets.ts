@@ -32,13 +32,17 @@ export const useTicketsStore = defineStore("tickets", () => {
     }
   }
 
-  async function addTicket(ticket: Ticket) {
+  async function addTicket(st_where: number, st_from: number, time: string ) {
     isAdding.value = true;
     error.value = null;
+    const price = Math.floor(Math.random() * 901.0) + 100.0;
+    // @ts-ignore
+    const user_id = authStore.user.id;
 
     try {
-      const response = await axiosInstance.post("/ticket", ticket);
-      tickets.push(response.data); // add the ticket returned by the server (it has an id)
+      // @ts-ignore
+      const response = await axiosInstance.post("/ticket", {st_where, st_from, user_id, price, time});
+      tickets.push(response.data);
     } catch (e: any) {
       console.error(e.message, e.response?.data);
       error.value =
