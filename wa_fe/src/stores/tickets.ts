@@ -42,7 +42,7 @@ export const useTicketsStore = defineStore("tickets", () => {
     } catch (e: any) {
       console.error(e.message, e.response?.data);
       error.value =
-        "Cannot save the new planet. 😢 " + (e.response?.data?.message ?? "");
+        "Cannot save the new ticket. 😢 " + (e.response?.data?.message ?? "");
     } finally {
       isAdding.value = false;
     }

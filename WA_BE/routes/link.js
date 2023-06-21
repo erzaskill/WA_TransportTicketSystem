@@ -21,10 +21,9 @@ router.delete('/:id', async (req, res) => {
     res.status(204).send("No Content");
 })
 router.post('/', async (req, res) => {
-    const data = req.body;
     console.log(req.user);
 
-    const link = await LinkService.createLink(data);
+    const link = await LinkService.createLink(req.body.title, req.body.st_where, req.body.st_from, req.body.arrival_time, req.body.departure_time, req.body.previous_station);
 
     res.status(201).json(link);
 })

@@ -1,0 +1,13 @@
+### Create Link
+POST http://localhost:3000/link
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJUZXN0aWNlayIsImVtYWlsIjoiVGVzdGljZWtAZ21haWwuY29tIiwibmFtZSI6IlRlc3QiLCJzdXJuYW1lIjoiVGVzdG92YW55Iiwicm9sZSI6IiIsImlhdCI6MTY4NzI4OTQ1Nn0.MvTMi7z_Qd4KSIzMVbj72LILEp-UEegJDELkhwJmBSc
+Content-Type: application/json
+
+{
+  "title": "From test_station_2 to  test_station_1",
+  "st_where": 2,
+  "st_from": 1,
+  "arrival_time": "7:30:00",
+  "departure_time": "9:30:00",
+  "previous_station": 3
+}

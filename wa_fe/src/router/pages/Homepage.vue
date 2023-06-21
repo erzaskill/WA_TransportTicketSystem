@@ -8,7 +8,7 @@
                 to their unique features and characteristics, our guide has
                 everything you need to explore the wonders of the universe.
             </p>
-            <router-link to="/login" class="btn" @mousemove="addConfetti()">Login</router-link>
+            <router-link to="/login" class="btn" @mousemove="addConfetti()">START YOUR JOURNEY</router-link>
         </div>
     </div>
 </template>

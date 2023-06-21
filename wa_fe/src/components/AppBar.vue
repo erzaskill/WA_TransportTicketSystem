@@ -5,8 +5,8 @@
                 <v-img src=" https://cdn-icons-png.flaticon.com/512/3336/3336008.png" height="40" width="40"
                     class="mr-5"></v-img>
             </router-link>
-
-            <v-btn variant="flat" :to="{ name: 'tickets' }">Tickets</v-btn>
+            <v-btn variant="flat" :to="{ name: 'stations' }">Stations</v-btn>
+            <v-btn variant="flat" :to="{ name: 'tickets' }">My Tickets</v-btn>
 
             <v-spacer></v-spacer>
 

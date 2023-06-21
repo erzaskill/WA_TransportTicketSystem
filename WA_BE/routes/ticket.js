@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
     const data = req.body;
     console.log(req.user);
 
-    const ticket = await TicketService.createTicket(data);
+    const ticket = await TicketService.createTicket(req.body.st_where, req.body.st_from, req.body.user_id, req.body.price, req.body.time);
 
     res.status(201).json(ticket);
 })

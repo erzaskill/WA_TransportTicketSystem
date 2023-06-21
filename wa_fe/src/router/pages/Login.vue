@@ -43,7 +43,7 @@ const login = async () => {
         state.error = error;
         state.snackbar = true;
     } else {
-        router.push({ name: 'planets' });
+        router.push({ name: 'homepage' });
     }
 };
 

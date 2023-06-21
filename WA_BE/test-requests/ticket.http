@@ -1,0 +1,12 @@
+### Create Ticket
+POST http://localhost:3000/ticket
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJUZXN0aWNlayIsImVtYWlsIjoiVGVzdGljZWtAZ21haWwuY29tIiwibmFtZSI6IlRlc3QiLCJzdXJuYW1lIjoiVGVzdG92YW55Iiwicm9sZSI6IiIsImlhdCI6MTY4NzI4OTQ1Nn0.MvTMi7z_Qd4KSIzMVbj72LILEp-UEegJDELkhwJmBSc
+Content-Type: application/json
+
+{
+  "st_where": 1,
+  "st_from": 2,
+  "user_id": 2,
+  "price": 400.0,
+  "time": "20/6/2023"
+}

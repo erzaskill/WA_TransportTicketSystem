@@ -21,17 +21,21 @@ class StationService {
         );
     }
 
-    async createStation(station) {
+    async createStation(name, state, problem, station_before, station_after) {
         const result = await database().run(
             "INSERT INTO stations (name, state, problem, station_before, station_after) VALUES (?, ?, ?, ?, ?)",
-            station.name, station.state, station.problem, station.station_before, station.station_after
+            name,
+            state,
+            problem,
+            station_before,
+            station_after
         );
         return await this.getById(result.lastID);
     }
-    async updateStation(id, data) {
+    async updateStation(id, name, state, problem, station_before, station_after) {
         await database().run(
             "UPDATE stations SET name = ?, state = ?, problem = ?, station_before = ?, station_after = ?  WHERE id = ?",
-            data.name, data.state, data.problem, data.station_before, data.station_after, id
+            name, state, problem, station_before, station_after, id
         );
         return await this.getById(id)
     }

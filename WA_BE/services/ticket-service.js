@@ -28,10 +28,10 @@ class TicketService {
         );
     }
 
-    async createTicket(ticket) {
+    async createTicket(st_where, st_from, user_id, price, time) {
         const result = await database().run(
             "INSERT INTO tickets (st_where, st_from, user_id, price, time) VALUES (?, ?, ?, ?, ?)",
-            ticket.st_where, ticket.st_from, ticket.user_id, ticket.price, ticket.time
+            st_where, st_from, user_id, price, time
         );
         return await this.getById(result.id);
     }

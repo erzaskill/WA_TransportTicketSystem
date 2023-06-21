@@ -16,6 +16,7 @@ router.post('/login', async (req, res) => {
         const response = {
             token: userService.generateToken(user)
         };
+        console.log("Token " , response)
         console.log("User succesfully logged!")
 
         res.status(201).json(response)

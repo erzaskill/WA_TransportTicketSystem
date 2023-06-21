@@ -19,28 +19,16 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const data = req.body;
-    console.log(req.user);
-
-    if (
-        data.name === undefined || data.name.trim() === "" ||
-        data.text === undefined || data.text.trim() === ""
-    ) {
-        res.status(400).send("Wrong input");
-        return;
-    }
-    const station = await StationService.createStation(data);
+    const station = await StationService.createStation(req.body.name, req.body.state, req.body.problem, req.body.station_before, req.body.station_after);
 
     res.status(201).json(station);
 })
 
 router.put('/:id', async (req, res) => {
-    const data = req.body;
     const id = parseInt(req.params.id);
     console.log("Station ID: ", id) //debug
-    console.log("Station data: ", data) //debugging
 
-    const station = await StationService.updateStation(id, data);
+    const station = await StationService.updateStation(id, req.body.name, req.body.state, req.body.problem, req.body.station_before, req.body.station_after );
 
     if (!station) {
         res.status(404).send("Not found")

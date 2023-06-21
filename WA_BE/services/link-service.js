@@ -21,10 +21,10 @@ class LinkService {
         );
     }
 
-    async createLink(link) {
+    async createLink(title, st_where, st_from, arrival_time, departure_time, previous_station) {
         const result = await database().run(
             "INSERT INTO links (title, st_where, st_from, arrival_time, departure_time, previous_station) VALUES (?, ?, ?, ?, ?, ?)",
-            link.title, link.st_where, link.st_from, link.arrival_time, link.departure_time, link.previous_station
+            title, st_where, st_from, arrival_time, departure_time, previous_station
         );
         return await this.getById(result.id);
     }
