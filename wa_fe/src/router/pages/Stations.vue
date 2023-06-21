@@ -14,29 +14,42 @@ onMounted(() => {
 </script>
 
 <template>
-  <h2>Stations 🚀</h2>
-  <!-- <v-btn id="submit" type="submit" color="primary">Add Station</v-btn> For Technic-->
+  <div class="title-container">
+    <h2>Stations 🪐</h2>
+    <v-btn color="primary"> <v-icon icon="mdi-plus"></v-icon> Add station</v-btn> <!-- later need to make this possible for Technic -->
+  </div>
   <Error v-if="stationsStore.error" :message="stationsStore.error" />
   <Loading v-if="stationsStore.isLoading" />
   <div v-else id="ticket-list">
 
     <div class="stations">
-      <div v-for="station in stationsStore.stations" :key="station.id" class="station">
-        <v-row>
-          <v-col cols="6" sm="11">
-            <v-card class="ma-2 pa-4 d-flex align-center stations" color="primary" >
-              <v-card-title class="headline white--text">{{ station.name }}</v-card-title>
+      <div v-for="station in stationsStore.stations" :key="station.id" class="card-container">
+            <v-card class=" d-flex align-center station"  >
+              <v-card-title class="headline">{{ station.name }}</v-card-title>
               <v-card-text>
-                <p v-if="stationsStore.getStationNameById(station.station_before) === undefined" class="text-body-2"><b>Previous Station: </b>It's a start station</p>
-                <p v-else class="text-body-2"><b>Previous Station:</b> {{ stationsStore.getStationNameById(station.station_before) }}</p>
-                <p v-if="stationsStore.getStationNameById(station.station_after) === undefined" class="text-body-2"><b>Next Station:</b>> It's the last station</p>
-                <p v-else class="text-body-2"><b>Next Station:</b>> {{ stationsStore.getStationNameById(station.station_after) }}</p>
-                <p v-if="station.state === 1" class="text-body-2 green--text"><b>Problem:</b> Everything OK!</p>
-                <p v-else class="text-body-2 red--text"><b>Problem:</b>There are troubles on the road</p>
+                <p class="text-body-2">
+                  <v-icon icon="mdi-home"></v-icon>
+                  <b>Previous Station: </b>
+                  <span v-if="stationsStore.getStationNameById(station.station_before) === undefined">It's a start station</span>
+                  <span v-else > {{ stationsStore.getStationNameById(station.station_before) }}</span>
+                </p>
+
+                <p class="text-body-2">
+                  <v-icon icon="mdi-map-marker"></v-icon>
+                  <b>Next Station:</b>
+                  <span v-if="stationsStore.getStationNameById(station.station_after) === undefined">It's the last station</span>
+                <span v-else >{{ stationsStore.getStationNameById(station.station_after) }}</span>
+                </p>
+                <p v-if="station.state === 1" class="text-body-2"><b >Problem:</b> <span class="green"><v-icon icon="mdi-check-circle"></v-icon>Everything OK!</span></p>
+                <p v-else class="text-body-2 "><b>Problem:</b> <span class="red">
+                  <v-icon icon="mdi-alert-circle"></v-icon>
+                  {{ station.problem !=='' ? station.problem : 'There are troubles on the road'}}</span></p>
               </v-card-text>
+              <div class="actions">
+                <v-btn><v-icon icon="mdi-pencil" size="20"></v-icon></v-btn>
+                <v-btn><v-icon icon="mdi-delete" size="20"></v-icon></v-btn>
+              </div>
             </v-card>
-          </v-col>
-        </v-row>
 
 
       </div>
@@ -46,25 +59,63 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.title-container{
+  display: flex;
+  justify-content: space-between;
+}
 .stations {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  margin: 20px 0;
+  padding: 20px;
   background-color: rgba(0, 123, 255, 0.05);
+  border-radius: 10px;
+  margin-top: 1rem;
+  padding-bottom: 3rem;
+}
+.card-container{
+  width: 100%;
+}
+.station {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 5.45px 5.45px 10.9px rgba(174,174,192,.25), -2.63px -2.63px 10.9px #dfecff;
+  padding: 8px !important;
+}
+.actions i:last-child{
+  margin-left: 5px;
 }
 
-.planet {
+.station .v-card-text{
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+.station p{
+  width: 30%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #eee;
+}
+p i, p b {
+  margin-right: 4px;
 }
 
-.planet.visited {
-  background-color: #91ff91;
+.headline{
+  font-family: "Arial", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  width: 15%;
+}
+
+.green{
+  color: rgb(30, 107, 30)
+}
+.red{
+  color: rgb(209, 73, 73);
 }
 </style>

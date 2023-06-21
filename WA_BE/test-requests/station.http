@@ -4,21 +4,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hb
 Content-Type: application/json
 
 {
-  "name": "test_station_2",
-  "state": 1,
-  "problem": "",
-  "station_before": 1,
-  "station_after": 3
+  "name": "Pluto",
+  "state": 0,
+  "problem": "Pluto is not a planet",
+  "station_before": 3,
+  "station_after": 5
 }
 ### Update Station
-PUT http://localhost:3000/station/1
+PUT http://localhost:3000/station/4
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJUZXN0aWNlayIsImVtYWlsIjoiVGVzdGljZWtAZ21haWwuY29tIiwibmFtZSI6IlRlc3QiLCJzdXJuYW1lIjoiVGVzdG92YW55Iiwicm9sZSI6IiIsImlhdCI6MTY4NzI4OTQ1Nn0.MvTMi7z_Qd4KSIzMVbj72LILEp-UEegJDELkhwJmBSc
 Content-Type: application/json
 
 {
-"name": "test_station_1",
-"state": 1,
-"problem": "",
-"station_before": "",
-"station_after": 2
+  "name": "Pluto",
+  "state": 0,
+  "problem": "Pluto is not a planet.",
+  "station_before": 3,
+  "station_after": 5
 }

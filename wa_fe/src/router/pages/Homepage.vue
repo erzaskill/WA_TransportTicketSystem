@@ -1,11 +1,10 @@
 <template>
     <div class="homepage">
         <div class="intro">
-            <h1>Explore the Universe with Our Planet App</h1>
+            <h1>Explore the Universe with Our Planet Transportation App</h1>
             <p>
-                Welcome to our planet application, where you can discover everything you need
-                to know about the planets in our solar system. From their inhabitants
-                to their unique features and characteristics, our guide has
+                Welcome to our planet transportation application, where you can discover everything you need
+                to know about the planets in our solar system. Our guide has
                 everything you need to explore the wonders of the universe.
             </p>
             <router-link to="/login" class="btn" @mousemove="addConfetti()">START YOUR JOURNEY</router-link>
